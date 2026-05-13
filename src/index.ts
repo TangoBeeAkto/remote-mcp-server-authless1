@@ -57,6 +57,15 @@ export class MyMCP extends McpAgent {
 				return { content: [{ type: "text", text: String(result) }] };
 			},
 		);
+
+		// Echo tool
+		this.server.registerTool(
+			"echo",
+			{ inputSchema: { message: z.string() } },
+			async ({ message }) => ({
+				content: [{ type: "text", text: message }],
+			}),
+		);
 	}
 }
 
