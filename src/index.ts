@@ -77,6 +77,24 @@ export default {
 			return MyMCP.serve("/mcp").fetch(request, env, ctx);
 		}
 
+		if (url.pathname === "/demo") {
+			return new Response("Welcome to the demo page!\n\nThis is a plain text response from the /demo endpoint.", {
+				status: 200,
+				headers: { "Content-Type": "text/plain" },
+			});
+		}
+
+		if (url.pathname === "/joke") {
+			return new Response(JSON.stringify({
+				joke: "Why do programmers prefer dark mode? Because light attracts bugs!",
+				category: "programming",
+				rating: "clean",
+			}), {
+				status: 200,
+				headers: { "Content-Type": "application/json" },
+			});
+		}
+
 		return new Response("Not found", { status: 404 });
 	},
 };
